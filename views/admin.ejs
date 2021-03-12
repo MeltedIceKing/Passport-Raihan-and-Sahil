@@ -1,0 +1,13 @@
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-3">Welcome <%= user.name %></p>
+
+<p>Current Active Sessions:</p>
+<% Object.keys(sessions).forEach(sess => { %>
+    <form action="/admin" method="POST">
+    <p>SessionID: <%= sess %></p> <input hidden='true' type="text" name="sess" value="<%= sess %>">
+    <p>UserID: <%= JSON.parse(sessions[sess]).passport.user %> </p>
+    <button type="submit">Revoke Session</button>
+    <p> </p>
+    </form>
+<% }); %>
+
